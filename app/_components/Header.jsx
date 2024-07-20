@@ -1,8 +1,14 @@
+"use client"
 import React from 'react'
 import Image from "next/image"
 import { Button } from '@/components/ui/button'
+import { UserButton, useUser } from '@clerk/nextjs';
+import Link from 'next/link';
 
 const Header = () => {
+
+  const { user, isSignedIn } = useUser();
+
   return (
     <div className='fixed w-full'>
       <div className="w-full p-4 flex justify-between items-center shadow-lg bg-black">
@@ -12,7 +18,12 @@ const Header = () => {
           height={100}
           className='rounded-t-md bg-blue-400'
         />
-        <Button className="hover:bg-white border border-slate-900 border-y-2 border-x-2 hover:text-black">Get Started</Button>
+        {isSignedIn ?
+          <span className="px-3"><UserButton /></span> :
+          <Link href={"/sign-up"}>
+            <Button className="hover:bg-white border border-slate-900 border-y-2 border-x-2 hover:text-black">Get Started</Button>
+          </Link>
+        }
       </div>
       <div className="w-[90%] md:w-[98%] mx-auto border border-gray-200 "></div>
     </div>
