@@ -2,10 +2,10 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
+  // SignInButton,
+  // SignedIn,
+  // SignedOut,
+  // UserButton
 } from '@clerk/nextjs'
 
 const outfit = Outfit({ subsets: ["latin"] });

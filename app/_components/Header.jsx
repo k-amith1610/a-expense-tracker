@@ -20,7 +20,7 @@ const Header = () => {
         />
         {isSignedIn ?
           <span className="px-3"><UserButton /></span> :
-          <Link href={"/sign-up"}>
+          <Link href={"/dashboard"}>
             <Button className="hover:bg-white border border-slate-900 border-y-2 border-x-2 hover:text-black">Get Started</Button>
           </Link>
         }
