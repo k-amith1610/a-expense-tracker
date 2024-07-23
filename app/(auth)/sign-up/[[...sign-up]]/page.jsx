@@ -4,6 +4,7 @@ import { SignUp } from "@clerk/nextjs";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
+import { useEffect } from "react";
 
 
 export default function Page() {
@@ -21,6 +22,18 @@ export default function Page() {
 
         })
     }, [])
+
+    useEffect(() => {
+        const audio = new Audio("/bgmusic.mp3");
+        audio.volume = 0.5;
+        audio.loop = true;
+        audio.play();
+
+        return () => {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+    })
 
     return (
         <section className="bg-gray-900 dark:bg-gray-900">
