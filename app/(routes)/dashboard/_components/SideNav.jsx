@@ -17,7 +17,7 @@ const SideNav = () => {
         },
         {
             id: 2,
-            name: 'Budget',
+            name: 'Budgets',
             icon: PiggyBank,
             path: '/dashboard/budget',
         },
@@ -50,9 +50,8 @@ const SideNav = () => {
 
             <div className="mt-5">
                 {navList.map((nav) => (
-                    <Link href={nav.path}>
+                    <Link href={nav.path} key={nav.id}>
                         <h2
-                            key={nav.id}
                             className={`flex gap-2 items-center text-gray-500
                                     font-medium p-4 cursor-pointer rounded-md mb-2
                                     hover:text-primary hover:bg-blue-100
