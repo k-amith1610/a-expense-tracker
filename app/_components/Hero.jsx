@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 const Hero = () => {
     useGSAP(() => {
@@ -30,12 +31,16 @@ const Hero = () => {
                     </p>
 
                     <div id="heading" className="mt-8 flex flex-wrap opacity-0 justify-center gap-4">
-                        <Link
+                        <Button
+                            asChild
+                            variant="default"
+                            size="default"
                             className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-700 sm:w-auto"
-                            href={"/dashboard"}
                         >
-                            Get Started
-                        </Link>
+                            <Link href="/dashboard">
+                                Get Started
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>

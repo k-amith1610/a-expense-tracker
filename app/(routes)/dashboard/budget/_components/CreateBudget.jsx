@@ -60,6 +60,7 @@ const CreateBudget = () => {
 
     const { user } = useUser();
     const onCreateBudget = async () => {
+        const audio = new Audio("/notification.mp3");
         const result = await db.insert(Budgets)
             .values({
                 name: name,
@@ -71,10 +72,19 @@ const CreateBudget = () => {
         if (result) {
             toast.success('New Budget Created!', {
                 style: {
-                    backgroundColor: '#fff',
-                    color: '#000',
+                    border: "2px solid #28a745",
+                    backgroundColor: '#d4edda',
+                    color: '#155724',
+                    padding: '14px',
+                    borderRadius: '10px',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Arial, sans-serif',
+                    fontSize: '14px',
+                    fontWeight: "700"
                 }
             });
+
+            audio.play();
         }
     }
 
