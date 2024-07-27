@@ -19,7 +19,7 @@ import { useUser } from '@clerk/nextjs'
 import { db } from '@/utils/dbConfig'
 import { toast } from 'sonner'
 
-const CreateBudget = () => {
+const CreateBudget = ({ refreshData }) => {
 
     const [emojiIcon, setEmojiIcon] = useState('🙂');
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
@@ -70,6 +70,7 @@ const CreateBudget = () => {
             }).returning({ insertedId: Budgets.id })
 
         if (result) {
+            refreshData();
             toast.success('New Budget Created!', {
                 style: {
                     border: "2px solid #28a745",
@@ -114,7 +115,7 @@ const CreateBudget = () => {
                                 >
                                     {emojiIcon}
                                 </button>
-                                <div className='absolute py-2'>
+                                <div className='absolute py-2 z-20'>
                                     <EmojiPicker
                                         open={openEmojiPicker}
                                         onEmojiClick={(e) => {
