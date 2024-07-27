@@ -95,7 +95,7 @@ const CreateBudget = () => {
                     <div
                         className='bg-black text-white p-10 rounded-md
                     items-center flex flex-col space-y-2 border-2 border-dashed 
-                    cursor-pointer hover:shadow-md hover:shadow-green-200 border-white '
+                    cursor-pointer hover:shadow-md hover:shadow-gray-300 border-white '
                     >
                         <h2 className="text-3xl rounded-full bg-slate-800 w-9 text-center">+</h2>
                         <h2>Create New Budget</h2>

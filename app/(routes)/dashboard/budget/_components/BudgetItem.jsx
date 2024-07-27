@@ -5,7 +5,7 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 
 const BudgetItem = ({ budget }) => {
     return (
-        <div className='p-5 border rounded-lg text-white hover:shadow-md hover:shadow-gray-500 cursor-pointer'>
+        <div className='p-5 border rounded-lg text-white hover:shadow-md hover:shadow-gray-500 cursor-pointer bg-black'>
             <div className="flex gap-2 items-center justify-between">
                 <div className="flex gap-2 items-center">
                     <h2
