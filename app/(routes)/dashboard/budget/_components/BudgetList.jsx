@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import CreateBudget from './CreateBudget'
 import { db } from '@/utils/dbConfig'
-import { eq, getTableColumns, sql } from 'drizzle-orm'
+import { desc, eq, getTableColumns, sql } from 'drizzle-orm'
 import { Budgets, Expenses } from '@/utils/schema'
 import { useUser } from '@clerk/nextjs'
 import BudgetItem from './BudgetItem'
@@ -23,11 +23,14 @@ const BudgetList = () => {
             totalSpend: sql`SUM(CAST(${Expenses.amount} AS NUMERIC))`.mapWith(Number),
             totalItem: sql`count(${Expenses.id})`.mapWith(Number),
         }).from(Budgets)
-            .leftJoin(Expenses, eq(Budgets.id, Expenses.id))
+            .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
             .where(eq(Budgets.createdBy, user.primaryEmailAddress?.emailAddress))
-            .groupBy(Budgets.id);
+            .groupBy(Budgets.id)
+            .orderBy(desc(Budgets.id));
+
         setBudgetList(result);
     }
+
 
     return (
         <div className="mt-7">
@@ -41,12 +44,12 @@ const BudgetList = () => {
                 {budgetList?.length > 0 ? budgetList.map((budget, index) => (
                     <BudgetItem budget={budget} key={index} />
                 )) :
-                [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
-                    <div key={index} className="w-full bg-slate-600 opacity-40 rounded-lg h-[150px] animate-pulse">
-                        
-                    </div>
-                ))
-            }
+                    [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+                        <div key={index} className="w-full bg-slate-600 opacity-40 rounded-lg h-[150px] animate-pulse">
+
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )
