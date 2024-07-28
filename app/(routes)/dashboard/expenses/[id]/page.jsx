@@ -2,23 +2,26 @@
 import { db } from '@/utils/dbConfig';
 import { Budgets, Expenses } from '@/utils/schema'
 import { useUser } from '@clerk/nextjs';
-import { eq, getTableColumns, sql } from 'drizzle-orm';
+import { desc, eq, getTableColumns, sql } from 'drizzle-orm';
 import React, { useEffect, useState } from 'react'
 import BudgetItem from '../../budget/_components/BudgetItem';
 import AddExpense from '../_components/AddExpense';
+import ExpenseListTable from '../_components/ExpenseListTable';
 
 const ExpensesScreen = ({ params }) => {
 
     const { user } = useUser();
     const [budgetInfo, setBudgetInfo] = useState();
+    const [expensesList, setExpensesList] = useState([]);
 
     useEffect(() => {
         user && getBudgetInfo();
     }, [user])
 
+
     // useEffect(() => {
-    //     console.log(budgetInfo);
-    // }, [budgetInfo]);
+    //     console.log(expensesList);
+    // }, [expensesList]);
 
     const getBudgetInfo = async () => {
         const result = await db.select({
@@ -37,7 +40,19 @@ const ExpensesScreen = ({ params }) => {
         // }
         // console.log(result[0]);
         setBudgetInfo(result[0]);
+        getExpensesList();
         // console.log(budgetInfo);
+    }
+
+    const getExpensesList = async () => {
+        const result = await db.select().from(Expenses)
+            .where(eq(Expenses.budgetId, params.id))
+            .orderBy(desc(Expenses.id));
+
+
+        // console.log(result);
+        setExpensesList(result);
+        // console.log(expensesList);
     }
 
     return (
@@ -57,6 +72,10 @@ const ExpensesScreen = ({ params }) => {
                     user={user}
                     refreshData={getBudgetInfo}
                 />
+            </div>
+            <div className="">
+                <h2 className="font-bold text-large">Latest Expenses</h2>
+                <ExpenseListTable expensesList={expensesList} />
             </div>
         </div>
     )
