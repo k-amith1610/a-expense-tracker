@@ -70,12 +70,15 @@ const ExpensesScreen = ({ params }) => {
                 <AddExpense
                     budgetId={params.id}
                     user={user}
-                    refreshData={getBudgetInfo}
+                    refreshData={() => getBudgetInfo()}
                 />
             </div>
-            <div className="">
+            <div className="mt-4">
                 <h2 className="font-bold text-large">Latest Expenses</h2>
-                <ExpenseListTable expensesList={expensesList} />
+                <ExpenseListTable
+                    expensesList={expensesList}
+                    refreshData={() => getBudgetInfo()}
+                />
             </div>
         </div>
     )

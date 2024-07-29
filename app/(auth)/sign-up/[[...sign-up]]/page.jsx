@@ -25,7 +25,7 @@ export default function Page() {
 
     useEffect(() => {
         const audio = new Audio("/bgmusic.mp3");
-        audio.volume = 0.5;
+        // audio.volume = 0.5;
         audio.loop = true;
         audio.play();
 
