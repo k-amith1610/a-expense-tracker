@@ -19,11 +19,11 @@ const ExpenseListTable = ({ expensesList, refreshData }) => {
             .returning();
 
         if (result) {
-            toast.success('Expense Deleted!', {
+            toast.success('Expense Deleted Successfully!', {
                 style: {
-                    border: "2px solid #a72828",
-                    backgroundColor: '#edd4d4',
-                    color: '#7b1c1c',
+                    border: "2px solid #28a745",
+                    backgroundColor: '#d4edda',
+                    color: '#155724',
                     padding: '14px',
                     borderRadius: '10px',
                     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
