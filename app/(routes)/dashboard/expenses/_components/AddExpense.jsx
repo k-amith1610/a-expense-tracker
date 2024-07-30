@@ -28,7 +28,6 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
         { "name": "Electricity Bill", "amount": 200 },
         { "name": "Water Bill", "amount": 200 },
         { "name": "Movies", "amount": 100 },
-        { "name": "Hobbies", "amount": 150 },
         { "name": "Online Courses", "amount": 400 },
         { "name": "Books", "amount": 200 },
         { "name": "Gym Membership", "amount": 600 },
