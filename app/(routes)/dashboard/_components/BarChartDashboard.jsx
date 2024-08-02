@@ -4,7 +4,7 @@ import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis, ResponsiveContainer } fro
 const BarChartDashboard = ({ budgetList }) => {
     return (
         <div className="border bg-black rounded-lg p-5 flex flex-col justify-start">
-            <h2 className="font-bold text-lg">Activity</h2>
+            <h2 className="font-bold text-lg">Your Activity</h2>
             <ResponsiveContainer
                 width="100%"
                 height={300}
@@ -19,6 +19,7 @@ const BarChartDashboard = ({ budgetList }) => {
                     }}
                 >
                     <XAxis
+                        className='text-xs md:text-sm lg:text-[16px] font-semibold mt-2'
                         dataKey="name"
                     />
                     <YAxis />
