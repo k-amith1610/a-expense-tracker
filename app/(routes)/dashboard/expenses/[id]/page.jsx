@@ -113,7 +113,7 @@ const ExpensesScreen = ({ params }) => {
         <div className="text-white p-10">
             <IoArrowBackCircle
                 className="cursor-pointer text-3xl text-black bg-white hover:text-white hover:bg-black rounded-full mb-2"
-                onClick={() => route.replace("/dashboard/budget")}
+                onClick={() => route.back()}
             />
             {budgetInfo && <h2 className="text-xl md:text-2xl font-bold space-y-2 md:space-y-0 md:flex items-center justify-between">
                 <span className="animate-pulse">Expenses Of {budgetInfo.name}</span>
@@ -153,6 +153,7 @@ const ExpensesScreen = ({ params }) => {
                 }
                 <AddExpense
                     budgetId={params.id}
+                    budgetInfo={budgetInfo}
                     user={user}
                     refreshData={() => getBudgetInfo()}
                 />

@@ -9,6 +9,11 @@ const Header = () => {
 
   const { user, isSignedIn } = useUser();
 
+  const clicked = () => {
+    const audio = new Audio("/button.wav");
+    audio.play();
+  }
+
   return (
     <div className='fixed w-full'>
       <div className="w-full p-4 flex justify-between items-center shadow-lg bg-black">
@@ -21,7 +26,12 @@ const Header = () => {
         {isSignedIn ?
           <span className="px-3"><UserButton /></span> :
           <Link href={"/dashboard"}>
-            <Button className="hover:bg-white border border-slate-900 border-y-2 border-x-2 hover:text-black">Get Started</Button>
+            <Button
+              className="hover:bg-white border border-slate-900 border-y-2 border-x-2 hover:text-black"
+              onClick={() => clicked()}
+            >
+              Get Started
+            </Button>
           </Link>
         }
       </div>

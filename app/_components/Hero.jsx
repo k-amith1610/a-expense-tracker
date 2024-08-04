@@ -15,6 +15,10 @@ const Hero = () => {
         })
     }, [])
 
+    const clicked = () => {
+        const audio = new Audio("/button.wav");
+        audio.play();
+    }
 
     return (
         <section className="overflow-hidden bg-slate-950 flex items-center flex-col">
@@ -35,7 +39,8 @@ const Hero = () => {
                             asChild
                             variant="default"
                             size="default"
-                            className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-700 sm:w-auto"
+                            onClick={() => clicked()}
+                            // className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-700 sm:w-auto"
                         >
                             <Link href="/dashboard">
                                 Get Started

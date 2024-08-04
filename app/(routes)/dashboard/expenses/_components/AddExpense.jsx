@@ -3,14 +3,17 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input'
 import { db } from '@/utils/dbConfig';
 import { Budgets, Expenses } from '@/utils/schema';
+import { Loader2 } from 'lucide-react';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
-const AddExpense = ({ budgetId, user, refreshData }) => {
+const AddExpense = ({ budgetId, user, refreshData, budgetInfo }) => {
 
-    const [name, setName] = useState();
-    const [amount, setAmount] = useState();
+    const [name, setName] = useState('');
+    const [amount, setAmount] = useState('');
+    const [loading, setLoading] = useState(false);
+
 
 
     const expenseCategoriesEg = [
@@ -60,9 +63,43 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
         return () => clearInterval(interval);
     }, []);
 
+    const checkExpenseAndAdd = async () => {
+        // console.log(budgetInfo.amount);
+        // console.log(budgetInfo.totalSpend);
+        setLoading(true);
+        let remaining = Number(budgetInfo.amount) - budgetInfo.totalSpend;
+        // console.log(remaining);
+        const audio = new Audio("/error.mp3");
+        if (Number(amount) > remaining) {
+            setLoading(false);
+            audio.play();
+            // setName("");
+            // setAmount("");
+            refreshData();
+            toast.error('Budget limit exceeded!', {
+                style: {
+                    border: "2px solid #a72828",
+                    backgroundColor: '#edd4d4',
+                    color: '#571515',
+                    padding: '14px',
+                    borderRadius: '10px',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Arial, sans-serif',
+                    fontSize: '14px',
+                    fontWeight: "700"
+                }
+            });
+
+            return;
+        }
+        addNewExpense();
+
+    }
 
     const addNewExpense = async () => {
+        // setLoading(true);
         const audio = new Audio("/notification.mp3");
+
         const result = await db.insert(Expenses).values({
             name: name,
             amount: amount,
@@ -71,6 +108,7 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
         }).returning({ insertedId: Budgets.id })
 
         if (result) {
+            setLoading(false);
             setName("");
             setAmount("");
             refreshData();
@@ -90,6 +128,7 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
 
             audio.play();
         }
+        setLoading(false);
     }
 
     return (
@@ -123,9 +162,12 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
             <Button
                 disabled={!(name && amount)}
                 className="mt-3 w-full"
-                onClick={() => addNewExpense()}
+                onClick={() => checkExpenseAndAdd()}
             >
-                Add New Expense
+                {loading ? <Loader2
+                    className="animate-spin"
+                /> :
+                    "Add New Expense"}
             </Button>
         </div>
     )
