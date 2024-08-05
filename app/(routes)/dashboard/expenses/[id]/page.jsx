@@ -110,7 +110,7 @@ const ExpensesScreen = ({ params }) => {
     }
 
     return (
-        <div className="text-white p-10">
+        <div className="mt-16 md:mt-0 text-white p-10">
             <IoArrowBackCircle
                 className="cursor-pointer text-3xl text-black bg-white hover:text-white hover:bg-black rounded-full mb-2"
                 onClick={() => route.back()}

@@ -54,7 +54,7 @@ const page = () => {
     // }, [expensesList])
 
     return (
-        <div className="text-white p-8">
+        <div className="mt-16 md:mt-0 text-white p-8">
             {user ?
                 <div>
                     <h2 className="font-bold text-3xl">Hi, {user?.fullName}</h2>

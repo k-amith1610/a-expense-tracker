@@ -48,7 +48,7 @@ const page = () => {
     }
 
     return (
-        <div className="p-5 md:p-10 text-white">
+        <div className="mt-16 md:mt-0 p-5 md:p-10 text-white">
             <h2 className="font-bold text-xl md:text-2xl py-3 animate-pulse">All Expenses</h2>
             <ExpenseListTable
                 expensesList={expensesList}
