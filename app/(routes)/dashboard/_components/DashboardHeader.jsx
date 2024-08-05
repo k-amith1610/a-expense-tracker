@@ -1,6 +1,7 @@
 "use client"
 import { UserButton } from '@clerk/nextjs'
 import { LayoutGrid, PiggyBank, ReceiptText } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
@@ -59,6 +60,16 @@ const DashboardHeader = () => {
           ))}
         </div>
       )}
+      <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center animate-pulse">
+        <Image
+          src={'/etlogo1.png'}
+          alt='logo'
+          width={120}
+          height={80}
+          className='rounded-t-md bg-blue-400'
+        />
+      </div>
+
       <div className="hidden md:block md:invisible">
         <AiOutlineMenu />
       </div>
