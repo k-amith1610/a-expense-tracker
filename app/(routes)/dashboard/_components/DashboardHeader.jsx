@@ -1,6 +1,6 @@
 "use client"
 import { UserButton } from '@clerk/nextjs'
-import { LayoutGrid, PiggyBank, ReceiptText, ShieldCheck } from 'lucide-react';
+import { LayoutGrid, PiggyBank, ReceiptText } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
@@ -28,12 +28,6 @@ const DashboardHeader = () => {
       name: 'Expenses',
       icon: ReceiptText,
       path: '/dashboard/expenses',
-    },
-    {
-      id: 4,
-      name: 'Upgrade',
-      icon: ShieldCheck,
-      path: '/dashboard/upgrade',
     }
   ];
 
