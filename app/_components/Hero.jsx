@@ -40,7 +40,7 @@ const Hero = () => {
                             variant="default"
                             size="default"
                             onClick={() => clicked()}
-                            // className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-700 sm:w-auto"
+                        // className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-700 sm:w-auto"
                         >
                             <Link href="/dashboard">
                                 Get Started
@@ -49,14 +49,16 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div id="heading" className="-mt-14 opacity-0 md:p-0 p-4">
-                <Image
-                    src='/dashboardimg.jpg'
-                    alt="dashboard image"
-                    width={1000}
-                    height={700}
-                    className="rounded-xl"
-                />
+            <div id="heading" className="-mt-14 opacity-0 p-5 bg-gray-50 rounded-lg">
+                <div id="heading" className="-mt-14 opacity-0 rounded-lg">
+                    <Image
+                        src='/dashboard.png'
+                        alt="dashboard image"
+                        width={1000}
+                        height={700}
+                        className="rounded-xl"
+                    />
+                </div>
             </div>
             <br /><br />
         </section>
